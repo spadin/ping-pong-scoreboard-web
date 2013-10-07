@@ -1,10 +1,10 @@
 (ns scoreboard-web.core
-  (:use
-    [compojure.core :only (defroutes GET)]
-    [compojure.route :only (not-found)]
-    [joodo.middleware.view-context :only (wrap-view-context)]
-    [joodo.views :only (render-template render-html)]
-    [joodo.controllers :only (controller-router)]))
+  (:require
+    [compojure.core :refer [defroutes GET]]
+    [compojure.route :refer [not-found]]
+    [joodo.middleware.view-context :refer [wrap-view-context]]
+    [joodo.views :refer [render-template render-html]]
+    [joodo.controllers :refer [controller-router]]))
 
 (defroutes scoreboard-web-routes
   (GET "/" [] (render-template "index"))
