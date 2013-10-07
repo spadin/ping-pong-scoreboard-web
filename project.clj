@@ -1,5 +1,5 @@
 (defproject scoreboard-web "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
+  :description "A web app for displaying a ping pong scoreboard"
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [joodo "1.2.2"]]
   :profiles {:dev {:dependencies [[speclj "2.7.5"]

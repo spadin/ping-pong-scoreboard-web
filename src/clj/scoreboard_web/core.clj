@@ -7,12 +7,12 @@
     [joodo.controllers :refer [controller-router]]))
 
 (defroutes scoreboard-web-routes
-  (GET "/" [] (render-template "index"))
+  (GET "/" [] (render-template "home/index"))
   (controller-router 'scoreboard-web.controller)
-  (not-found (render-template "not_found" :template-root "scoreboard_web/view" :ns `scoreboard-web.view.view-helpers)))
+  (not-found (render-template "util/not_found" :template-root "scoreboard_web" :ns `scoreboard-web.util.view-helpers)))
 
 (def app-handler
   (->
     scoreboard-web-routes
-    (wrap-view-context :template-root "scoreboard_web/view" :ns `scoreboard-web.view.view-helpers)))
+    (wrap-view-context :template-root "scoreboard_web" :ns `scoreboard-web.util.view-helpers)))
 
