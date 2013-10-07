@@ -8,14 +8,15 @@
             [specljs "2.7.4"]
             [joodo/lein-joodo "1.2.0"]
             [lein-cljsbuild "0.3.2"]]
-  :cljsbuild ~(let [run-specs ["phantomjs" "bin/specljs_runner.js" "public/javascript/scoreboard-web_dev.js"]]
+  :cljsbuild ~(let [output-file "public/javascript/scoreboard-web.js"
+                    run-specs ["phantomjs" "bin/specljs_runner.js" output-file]]
     {:builds {:dev {:source-paths ["src/cljs" "spec/cljs"]
-                    :compiler {:output-to "public/javascript/scoreboard-web_dev.js"
+                    :compiler {:output-to output-file
                                :optimizations :whitespace
                                :pretty-print true}
                     :notify-command run-specs}
               :prod {:source-paths ["src/cljs"]
-                     :compiler {:output-to "public/javascript/scoreboard-web.js"
+                     :compiler {:output-to output-file
                                 :optimizations :simple}}}
      :test-commands {"test" run-specs}})
   :source-paths ["src/clj" "src/cljs"]
