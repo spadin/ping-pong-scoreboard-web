@@ -25049,12 +25049,12 @@ goog.provide("scoreboard_web.core_spec");
 goog.require("cljs.core");
 goog.require("scoreboard_web.core");
 goog.require("specljs.core");
-var description__3713__auto___3968 = specljs.components.new_description.call(null, "A ClojureScript test", "scoreboard-web.core-spec");
-var _STAR_parent_description_STAR_3962_3969 = specljs.config._STAR_parent_description_STAR_;
+var description__3713__auto___4939 = specljs.components.new_description.call(null, "A ClojureScript test", "scoreboard-web.core-spec");
+var _STAR_parent_description_STAR_4933_4940 = specljs.config._STAR_parent_description_STAR_;
 try {
-  specljs.config._STAR_parent_description_STAR_ = description__3713__auto___3968;
-  var seq__3964_3970 = cljs.core.seq.call(null, cljs.core.list.call(null, specljs.components.new_characteristic.call(null, "fails. Fix it!", function() {
-    var expected__3793__auto__ = 0;
+  specljs.config._STAR_parent_description_STAR_ = description__3713__auto___4939;
+  var seq__4935_4941 = cljs.core.seq.call(null, cljs.core.list.call(null, specljs.components.new_characteristic.call(null, "fails. Fix it!", function() {
+    var expected__3793__auto__ = 1;
     var actual__3794__auto__ = 1;
     if(!cljs.core._EQ_.call(null, expected__3793__auto__, actual__3794__auto__)) {
       throw new specljs.platform.SpecFailure([cljs.core.str("Expected: "), cljs.core.str(expected__3793__auto__ == null ? "nil" : cljs.core.pr_str.call(null, expected__3793__auto__)), cljs.core.str(specljs.platform.endl), cljs.core.str("     got: "), cljs.core.str(actual__3794__auto__ == null ? "nil" : cljs.core.pr_str.call(null, actual__3794__auto__)), cljs.core.str(" (using =)")].join(""));
@@ -25062,48 +25062,48 @@ try {
       return null
     }
   })));
-  var chunk__3965_3971 = null;
-  var count__3966_3972 = 0;
-  var i__3967_3973 = 0;
+  var chunk__4936_4942 = null;
+  var count__4937_4943 = 0;
+  var i__4938_4944 = 0;
   while(true) {
-    if(i__3967_3973 < count__3966_3972) {
-      var component__3714__auto___3974 = cljs.core._nth.call(null, chunk__3965_3971, i__3967_3973);
-      specljs.components.install.call(null, component__3714__auto___3974, description__3713__auto___3968);
-      var G__3975 = seq__3964_3970;
-      var G__3976 = chunk__3965_3971;
-      var G__3977 = count__3966_3972;
-      var G__3978 = i__3967_3973 + 1;
-      seq__3964_3970 = G__3975;
-      chunk__3965_3971 = G__3976;
-      count__3966_3972 = G__3977;
-      i__3967_3973 = G__3978;
+    if(i__4938_4944 < count__4937_4943) {
+      var component__3714__auto___4945 = cljs.core._nth.call(null, chunk__4936_4942, i__4938_4944);
+      specljs.components.install.call(null, component__3714__auto___4945, description__3713__auto___4939);
+      var G__4946 = seq__4935_4941;
+      var G__4947 = chunk__4936_4942;
+      var G__4948 = count__4937_4943;
+      var G__4949 = i__4938_4944 + 1;
+      seq__4935_4941 = G__4946;
+      chunk__4936_4942 = G__4947;
+      count__4937_4943 = G__4948;
+      i__4938_4944 = G__4949;
       continue
     }else {
-      var temp__4092__auto___3979 = cljs.core.seq.call(null, seq__3964_3970);
-      if(temp__4092__auto___3979) {
-        var seq__3964_3980__$1 = temp__4092__auto___3979;
-        if(cljs.core.chunked_seq_QMARK_.call(null, seq__3964_3980__$1)) {
-          var c__3075__auto___3981 = cljs.core.chunk_first.call(null, seq__3964_3980__$1);
-          var G__3982 = cljs.core.chunk_rest.call(null, seq__3964_3980__$1);
-          var G__3983 = c__3075__auto___3981;
-          var G__3984 = cljs.core.count.call(null, c__3075__auto___3981);
-          var G__3985 = 0;
-          seq__3964_3970 = G__3982;
-          chunk__3965_3971 = G__3983;
-          count__3966_3972 = G__3984;
-          i__3967_3973 = G__3985;
+      var temp__4092__auto___4950 = cljs.core.seq.call(null, seq__4935_4941);
+      if(temp__4092__auto___4950) {
+        var seq__4935_4951__$1 = temp__4092__auto___4950;
+        if(cljs.core.chunked_seq_QMARK_.call(null, seq__4935_4951__$1)) {
+          var c__3075__auto___4952 = cljs.core.chunk_first.call(null, seq__4935_4951__$1);
+          var G__4953 = cljs.core.chunk_rest.call(null, seq__4935_4951__$1);
+          var G__4954 = c__3075__auto___4952;
+          var G__4955 = cljs.core.count.call(null, c__3075__auto___4952);
+          var G__4956 = 0;
+          seq__4935_4941 = G__4953;
+          chunk__4936_4942 = G__4954;
+          count__4937_4943 = G__4955;
+          i__4938_4944 = G__4956;
           continue
         }else {
-          var component__3714__auto___3986 = cljs.core.first.call(null, seq__3964_3980__$1);
-          specljs.components.install.call(null, component__3714__auto___3986, description__3713__auto___3968);
-          var G__3987 = cljs.core.next.call(null, seq__3964_3980__$1);
-          var G__3988 = null;
-          var G__3989 = 0;
-          var G__3990 = 0;
-          seq__3964_3970 = G__3987;
-          chunk__3965_3971 = G__3988;
-          count__3966_3972 = G__3989;
-          i__3967_3973 = G__3990;
+          var component__3714__auto___4957 = cljs.core.first.call(null, seq__4935_4951__$1);
+          specljs.components.install.call(null, component__3714__auto___4957, description__3713__auto___4939);
+          var G__4958 = cljs.core.next.call(null, seq__4935_4951__$1);
+          var G__4959 = null;
+          var G__4960 = 0;
+          var G__4961 = 0;
+          seq__4935_4941 = G__4958;
+          chunk__4936_4942 = G__4959;
+          count__4937_4943 = G__4960;
+          i__4938_4944 = G__4961;
           continue
         }
       }else {
@@ -25112,10 +25112,10 @@ try {
     break
   }
 }finally {
-  specljs.config._STAR_parent_description_STAR_ = _STAR_parent_description_STAR_3962_3969
+  specljs.config._STAR_parent_description_STAR_ = _STAR_parent_description_STAR_4933_4940
 }
 if(cljs.core.not.call(null, specljs.config._STAR_parent_description_STAR_)) {
-  specljs.running.submit_description.call(null, specljs.config.active_runner.call(null), description__3713__auto___3968)
+  specljs.running.submit_description.call(null, specljs.config.active_runner.call(null), description__3713__auto___4939)
 }else {
 }
 ;
