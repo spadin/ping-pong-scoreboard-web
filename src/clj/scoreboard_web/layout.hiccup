@@ -3,8 +3,8 @@
  [:head
   [:meta {:http-equiv "Content-Type" :content "text/html" :charset "iso-8859-1"}]
   [:title "scoreboard-web"]
-  (include-css "/stylesheets/scoreboard_web.css")
-  (include-js "/javascript/scoreboard_web.js")]
+  (include-css (path-with-fingerprint "/stylesheets/scoreboard-web.css"))
+  (include-js (path-with-fingerprint (format "/javascript/scoreboard-web%s.js" (if (env/development?) "_dev" ""))))]
  [:body
   (eval (:template-body joodo.views/*view-context*))
 ]]

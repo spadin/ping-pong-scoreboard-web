@@ -1,1 +1,0 @@
-(ns scoreboard-web.core)
