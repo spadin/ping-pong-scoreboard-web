@@ -4,6 +4,6 @@
 
 (defn override-click! [nodes action]
   (event/listen! nodes
-    :click (fn [e]
-             (event/prevent-default e)
-             (action e))))
+    :click (fn [evt]
+             (event/prevent-default evt)
+             (action evt))))

@@ -22325,10 +22325,13 @@ shoreleave.remote.request = shoreleave.remotes.request.request;
 shoreleave.remote.jsonp = shoreleave.remotes.jsonp.jsonp;
 shoreleave.remote.remote_callback = shoreleave.remotes.http_rpc.remote_callback;
 scoreboard_web.main = {};
-scoreboard_web.main.init = function() {
-  return null
+scoreboard_web.main.handle_remote_click = function(a) {
+  var b = (new cljs.core.Keyword(null, "currentTarget", "currentTarget", 3268300764)).cljs$core$IFn$_invoke$arity$1(a);
+  a = domina.attr.call(null, b, new cljs.core.Keyword(null, "data-action", "data-action", 2023020843));
+  b = domina.attr.call(null, b, new cljs.core.Keyword(null, "data-params", "data-params", 2450543739));
+  return shoreleave.remote.remote_callback.call(null, a, b)
 };
-scoreboard_web.util.view = {};
-scoreboard_web.util.view.create_remote_link = function(a, b, c) {
-  return cljs.core.PersistentVector.fromArray([new cljs.core.Keyword(null, "a", "a", 1013904339), cljs.core.PersistentArrayMap.fromArray([new cljs.core.Keyword(null, "data-remote", "data-remote", 2511360827), !0, new cljs.core.Keyword(null, "data-action", "data-action", 2023020843), b, new cljs.core.Keyword(null, "data-params", "data-params", 2450543739), c, new cljs.core.Keyword(null, "href", "href", 1017115293), "#"], !0), a], !0)
+scoreboard_web.main.remote_links = domina.nodes.call(null, domina.css.sel.call(null, "a[data-remote]"));
+scoreboard_web.main.init = function() {
+  return scoreboard_web.util.override_click_BANG_.call(null, scoreboard_web.main.remote_links, scoreboard_web.main.handle_remote_click)
 };

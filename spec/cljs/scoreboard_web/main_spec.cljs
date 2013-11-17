@@ -7,7 +7,8 @@
             [hiccups.runtime :as rt]
             [specljs.core]
             [scoreboard-web.util.view :as util-view]
-            [scoreboard-web.main :as main]))
+            [scoreboard-web.main :as main]
+            [shoreleave.remote :refer [remote-callback]]))
 
 (describe "scoreboard-web.main"
   (context "/init"
@@ -18,6 +19,11 @@
 
     (before (dom/append! (css/sel "body") @remote-link))
 
-    (it "adds a click handler to anchor tags with data-remote attribute"
-      (should= "link-text"
-               (dom/text (dom/single-node (css/sel "a[data-remote]")))))))
+    (it "calls remote-callback with action when link is clicked"
+      (let [remote-callback-args (atom [])]
+        (with-redefs [remote-callback (fn [& args] (reset! remote-callback-args args))]
+          (main/init)
+          (event/dispatch! @remote-link :click {})
+
+          (should= "link-action" (nth @remote-callback-args 0))
+          (should= "link-params" (nth @remote-callback-args 1)))))))

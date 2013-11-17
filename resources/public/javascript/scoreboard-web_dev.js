@@ -29363,9 +29363,9 @@ goog.require("domina.events");
 goog.require("domina");
 goog.require("domina");
 scoreboard_web.util.override_click_BANG_ = function override_click_BANG_(nodes, action) {
-  return domina.events.listen_BANG_.call(null, nodes, new cljs.core.Keyword(null, "click", "click", 1108654330), function(e) {
-    domina.events.prevent_default.call(null, e);
-    return action.call(null, e)
+  return domina.events.listen_BANG_.call(null, nodes, new cljs.core.Keyword(null, "click", "click", 1108654330), function(evt) {
+    domina.events.prevent_default.call(null, evt);
+    return action.call(null, evt)
   })
 };
 goog.provide("clojure.set");
@@ -40074,11 +40074,20 @@ goog.require("domina");
 goog.require("domina");
 goog.require("scoreboard_web.util");
 goog.require("scoreboard_web.util");
+scoreboard_web.main.handle_remote_click = function handle_remote_click(evt) {
+  var current_target = (new cljs.core.Keyword(null, "currentTarget", "currentTarget", 3268300764)).cljs$core$IFn$_invoke$arity$1(evt);
+  var action = domina.attr.call(null, current_target, new cljs.core.Keyword(null, "data-action", "data-action", 2023020843));
+  var params = domina.attr.call(null, current_target, new cljs.core.Keyword(null, "data-params", "data-params", 2450543739));
+  return shoreleave.remote.remote_callback.call(null, action, params)
+};
+scoreboard_web.main.remote_links = domina.nodes.call(null, domina.css.sel.call(null, "a[data-remote]"));
 scoreboard_web.main.init = function init() {
-  return null
+  return scoreboard_web.util.override_click_BANG_.call(null, scoreboard_web.main.remote_links, scoreboard_web.main.handle_remote_click)
 };
 goog.provide("scoreboard_web.main_spec");
 goog.require("cljs.core");
+goog.require("shoreleave.remote");
+goog.require("shoreleave.remote");
 goog.require("domina.events");
 goog.require("scoreboard_web.util.view");
 goog.require("specljs.core");
@@ -40092,79 +40101,114 @@ goog.require("domina");
 goog.require("domina.css");
 goog.require("domina.css");
 goog.require("scoreboard_web.main");
-var description__5874__auto___6661 = specljs.components.new_description.call(null, "scoreboard-web.main", "scoreboard-web.main-spec");
-var _STAR_parent_description_STAR_6650_6662 = specljs.config._STAR_parent_description_STAR_;
+var description__5874__auto___7550 = specljs.components.new_description.call(null, "scoreboard-web.main", "scoreboard-web.main-spec");
+var _STAR_parent_description_STAR_7538_7551 = specljs.config._STAR_parent_description_STAR_;
 try {
-  specljs.config._STAR_parent_description_STAR_ = description__5874__auto___6661;
-  var seq__6651_6663 = cljs.core.seq.call(null, cljs.core.list.call(null, function() {
+  specljs.config._STAR_parent_description_STAR_ = description__5874__auto___7550;
+  var seq__7539_7552 = cljs.core.seq.call(null, cljs.core.list.call(null, function() {
     var description__5874__auto____$1 = specljs.components.new_description.call(null, "/init", "scoreboard-web.main-spec");
-    var _STAR_parent_description_STAR_6655_6667 = specljs.config._STAR_parent_description_STAR_;
+    var _STAR_parent_description_STAR_7543_7556 = specljs.config._STAR_parent_description_STAR_;
     try {
       specljs.config._STAR_parent_description_STAR_ = description__5874__auto____$1;
-      var seq__6656_6668 = cljs.core.seq.call(null, cljs.core.list.call(null, function() {
-        scoreboard_web.main_spec.with6660 = specljs.components.new_with.call(null, new cljs.core.Symbol(null, "remote_link", "remote_link", 585639436, null), new cljs.core.Symbol(null, "with6660", "with6660", 1712764153, null), function(_STAR_parent_description_STAR_6655_6667, description__5874__auto____$1) {
+      var seq__7544_7557 = cljs.core.seq.call(null, cljs.core.list.call(null, function() {
+        scoreboard_web.main_spec.with7548 = specljs.components.new_with.call(null, new cljs.core.Symbol(null, "remote_link", "remote_link", 585639436, null), new cljs.core.Symbol(null, "with7548", "with7548", 1712792929, null), function(_STAR_parent_description_STAR_7543_7556, description__5874__auto____$1) {
           return function() {
             return domina.single_node.call(null, hiccups.runtime.render_html.call(null, scoreboard_web.util.view.create_remote_link.call(null, "link-text", "link-action", "link-params")))
           }
-        }(_STAR_parent_description_STAR_6655_6667, description__5874__auto____$1), false);
-        return scoreboard_web.main_spec.with6660
-      }(), specljs.components.new_before.call(null, function(_STAR_parent_description_STAR_6655_6667, description__5874__auto____$1) {
+        }(_STAR_parent_description_STAR_7543_7556, description__5874__auto____$1), false);
+        return scoreboard_web.main_spec.with7548
+      }(), specljs.components.new_before.call(null, function(_STAR_parent_description_STAR_7543_7556, description__5874__auto____$1) {
         return function() {
           return domina.append_BANG_.call(null, domina.css.sel.call(null, "body"), cljs.core.deref.call(null, scoreboard_web.main_spec.remote_link))
         }
-      }(_STAR_parent_description_STAR_6655_6667, description__5874__auto____$1)), specljs.components.new_characteristic.call(null, "adds a click handler to anchor tags with data-remote attribute", function(_STAR_parent_description_STAR_6655_6667, description__5874__auto____$1) {
+      }(_STAR_parent_description_STAR_7543_7556, description__5874__auto____$1)), specljs.components.new_characteristic.call(null, "calls remote-callback with action when link is clicked", function(_STAR_parent_description_STAR_7543_7556, description__5874__auto____$1) {
         return function() {
-          var expected__5954__auto__ = "link-text";
-          var actual__5955__auto__ = domina.text.call(null, domina.single_node.call(null, domina.css.sel.call(null, "a[data-remote]")));
-          if(!cljs.core._EQ_.call(null, expected__5954__auto__, actual__5955__auto__)) {
-            throw new specljs.platform.SpecFailure([cljs.core.str("Expected: "), cljs.core.str(expected__5954__auto__ == null ? "nil" : cljs.core.pr_str.call(null, expected__5954__auto__)), cljs.core.str(specljs.platform.endl), cljs.core.str("     got: "), cljs.core.str(actual__5955__auto__ == null ? "nil" : cljs.core.pr_str.call(null, actual__5955__auto__)), cljs.core.str(" (using \x3d)")].join(""));
-          }else {
-            return null
+          var remote_callback_args = cljs.core.atom.call(null, cljs.core.PersistentVector.EMPTY);
+          var remote_callback7549 = shoreleave.remote.remote_callback;
+          try {
+            shoreleave.remote.remote_callback = function(remote_callback7549, remote_callback_args, _STAR_parent_description_STAR_7543_7556, description__5874__auto____$1) {
+              return function() {
+                var G__7561__delegate = function(args) {
+                  return cljs.core.reset_BANG_.call(null, remote_callback_args, args)
+                };
+                var G__7561 = function(var_args) {
+                  var args = null;
+                  if(arguments.length > 0) {
+                    args = cljs.core.array_seq(Array.prototype.slice.call(arguments, 0), 0)
+                  }
+                  return G__7561__delegate.call(this, args)
+                };
+                G__7561.cljs$lang$maxFixedArity = 0;
+                G__7561.cljs$lang$applyTo = function(arglist__7562) {
+                  var args = cljs.core.seq(arglist__7562);
+                  return G__7561__delegate(args)
+                };
+                G__7561.cljs$core$IFn$_invoke$arity$variadic = G__7561__delegate;
+                return G__7561
+              }()
+            }(remote_callback7549, remote_callback_args, _STAR_parent_description_STAR_7543_7556, description__5874__auto____$1);
+            scoreboard_web.main.init.call(null);
+            domina.events.dispatch_BANG_.call(null, cljs.core.deref.call(null, scoreboard_web.main_spec.remote_link), new cljs.core.Keyword(null, "click", "click", 1108654330), cljs.core.PersistentArrayMap.EMPTY);
+            var expected__5954__auto___7563 = "link-action";
+            var actual__5955__auto___7564 = cljs.core.nth.call(null, cljs.core.deref.call(null, remote_callback_args), 0);
+            if(!cljs.core._EQ_.call(null, expected__5954__auto___7563, actual__5955__auto___7564)) {
+              throw new specljs.platform.SpecFailure([cljs.core.str("Expected: "), cljs.core.str(expected__5954__auto___7563 == null ? "nil" : cljs.core.pr_str.call(null, expected__5954__auto___7563)), cljs.core.str(specljs.platform.endl), cljs.core.str("     got: "), cljs.core.str(actual__5955__auto___7564 == null ? "nil" : cljs.core.pr_str.call(null, actual__5955__auto___7564)), cljs.core.str(" (using \x3d)")].join(""));
+            }else {
+            }
+            var expected__5954__auto__ = "link-params";
+            var actual__5955__auto__ = cljs.core.nth.call(null, cljs.core.deref.call(null, remote_callback_args), 1);
+            if(!cljs.core._EQ_.call(null, expected__5954__auto__, actual__5955__auto__)) {
+              throw new specljs.platform.SpecFailure([cljs.core.str("Expected: "), cljs.core.str(expected__5954__auto__ == null ? "nil" : cljs.core.pr_str.call(null, expected__5954__auto__)), cljs.core.str(specljs.platform.endl), cljs.core.str("     got: "), cljs.core.str(actual__5955__auto__ == null ? "nil" : cljs.core.pr_str.call(null, actual__5955__auto__)), cljs.core.str(" (using \x3d)")].join(""));
+            }else {
+              return null
+            }
+          }finally {
+            shoreleave.remote.remote_callback = remote_callback7549
           }
         }
-      }(_STAR_parent_description_STAR_6655_6667, description__5874__auto____$1))));
-      var chunk__6657_6669 = null;
-      var count__6658_6670 = 0;
-      var i__6659_6671 = 0;
+      }(_STAR_parent_description_STAR_7543_7556, description__5874__auto____$1))));
+      var chunk__7545_7558 = null;
+      var count__7546_7559 = 0;
+      var i__7547_7560 = 0;
       while(true) {
-        if(i__6659_6671 < count__6658_6670) {
-          var component__5875__auto___6672 = cljs.core._nth.call(null, chunk__6657_6669, i__6659_6671);
-          specljs.components.install.call(null, component__5875__auto___6672, description__5874__auto____$1);
-          var G__6673 = seq__6656_6668;
-          var G__6674 = chunk__6657_6669;
-          var G__6675 = count__6658_6670;
-          var G__6676 = i__6659_6671 + 1;
-          seq__6656_6668 = G__6673;
-          chunk__6657_6669 = G__6674;
-          count__6658_6670 = G__6675;
-          i__6659_6671 = G__6676;
+        if(i__7547_7560 < count__7546_7559) {
+          var component__5875__auto___7565 = cljs.core._nth.call(null, chunk__7545_7558, i__7547_7560);
+          specljs.components.install.call(null, component__5875__auto___7565, description__5874__auto____$1);
+          var G__7566 = seq__7544_7557;
+          var G__7567 = chunk__7545_7558;
+          var G__7568 = count__7546_7559;
+          var G__7569 = i__7547_7560 + 1;
+          seq__7544_7557 = G__7566;
+          chunk__7545_7558 = G__7567;
+          count__7546_7559 = G__7568;
+          i__7547_7560 = G__7569;
           continue
         }else {
-          var temp__4092__auto___6677 = cljs.core.seq.call(null, seq__6656_6668);
-          if(temp__4092__auto___6677) {
-            var seq__6656_6678__$1 = temp__4092__auto___6677;
-            if(cljs.core.chunked_seq_QMARK_.call(null, seq__6656_6678__$1)) {
-              var c__3670__auto___6679 = cljs.core.chunk_first.call(null, seq__6656_6678__$1);
-              var G__6680 = cljs.core.chunk_rest.call(null, seq__6656_6678__$1);
-              var G__6681 = c__3670__auto___6679;
-              var G__6682 = cljs.core.count.call(null, c__3670__auto___6679);
-              var G__6683 = 0;
-              seq__6656_6668 = G__6680;
-              chunk__6657_6669 = G__6681;
-              count__6658_6670 = G__6682;
-              i__6659_6671 = G__6683;
+          var temp__4092__auto___7570 = cljs.core.seq.call(null, seq__7544_7557);
+          if(temp__4092__auto___7570) {
+            var seq__7544_7571__$1 = temp__4092__auto___7570;
+            if(cljs.core.chunked_seq_QMARK_.call(null, seq__7544_7571__$1)) {
+              var c__3670__auto___7572 = cljs.core.chunk_first.call(null, seq__7544_7571__$1);
+              var G__7573 = cljs.core.chunk_rest.call(null, seq__7544_7571__$1);
+              var G__7574 = c__3670__auto___7572;
+              var G__7575 = cljs.core.count.call(null, c__3670__auto___7572);
+              var G__7576 = 0;
+              seq__7544_7557 = G__7573;
+              chunk__7545_7558 = G__7574;
+              count__7546_7559 = G__7575;
+              i__7547_7560 = G__7576;
               continue
             }else {
-              var component__5875__auto___6684 = cljs.core.first.call(null, seq__6656_6678__$1);
-              specljs.components.install.call(null, component__5875__auto___6684, description__5874__auto____$1);
-              var G__6685 = cljs.core.next.call(null, seq__6656_6678__$1);
-              var G__6686 = null;
-              var G__6687 = 0;
-              var G__6688 = 0;
-              seq__6656_6668 = G__6685;
-              chunk__6657_6669 = G__6686;
-              count__6658_6670 = G__6687;
-              i__6659_6671 = G__6688;
+              var component__5875__auto___7577 = cljs.core.first.call(null, seq__7544_7571__$1);
+              specljs.components.install.call(null, component__5875__auto___7577, description__5874__auto____$1);
+              var G__7578 = cljs.core.next.call(null, seq__7544_7571__$1);
+              var G__7579 = null;
+              var G__7580 = 0;
+              var G__7581 = 0;
+              seq__7544_7557 = G__7578;
+              chunk__7545_7558 = G__7579;
+              count__7546_7559 = G__7580;
+              i__7547_7560 = G__7581;
               continue
             }
           }else {
@@ -40173,7 +40217,7 @@ try {
         break
       }
     }finally {
-      specljs.config._STAR_parent_description_STAR_ = _STAR_parent_description_STAR_6655_6667
+      specljs.config._STAR_parent_description_STAR_ = _STAR_parent_description_STAR_7543_7556
     }
     if(cljs.core.not.call(null, specljs.config._STAR_parent_description_STAR_)) {
       specljs.running.submit_description.call(null, specljs.config.active_runner.call(null), description__5874__auto____$1)
@@ -40181,48 +40225,48 @@ try {
     }
     return description__5874__auto____$1
   }()));
-  var chunk__6652_6664 = null;
-  var count__6653_6665 = 0;
-  var i__6654_6666 = 0;
+  var chunk__7540_7553 = null;
+  var count__7541_7554 = 0;
+  var i__7542_7555 = 0;
   while(true) {
-    if(i__6654_6666 < count__6653_6665) {
-      var component__5875__auto___6689 = cljs.core._nth.call(null, chunk__6652_6664, i__6654_6666);
-      specljs.components.install.call(null, component__5875__auto___6689, description__5874__auto___6661);
-      var G__6690 = seq__6651_6663;
-      var G__6691 = chunk__6652_6664;
-      var G__6692 = count__6653_6665;
-      var G__6693 = i__6654_6666 + 1;
-      seq__6651_6663 = G__6690;
-      chunk__6652_6664 = G__6691;
-      count__6653_6665 = G__6692;
-      i__6654_6666 = G__6693;
+    if(i__7542_7555 < count__7541_7554) {
+      var component__5875__auto___7582 = cljs.core._nth.call(null, chunk__7540_7553, i__7542_7555);
+      specljs.components.install.call(null, component__5875__auto___7582, description__5874__auto___7550);
+      var G__7583 = seq__7539_7552;
+      var G__7584 = chunk__7540_7553;
+      var G__7585 = count__7541_7554;
+      var G__7586 = i__7542_7555 + 1;
+      seq__7539_7552 = G__7583;
+      chunk__7540_7553 = G__7584;
+      count__7541_7554 = G__7585;
+      i__7542_7555 = G__7586;
       continue
     }else {
-      var temp__4092__auto___6694 = cljs.core.seq.call(null, seq__6651_6663);
-      if(temp__4092__auto___6694) {
-        var seq__6651_6695__$1 = temp__4092__auto___6694;
-        if(cljs.core.chunked_seq_QMARK_.call(null, seq__6651_6695__$1)) {
-          var c__3670__auto___6696 = cljs.core.chunk_first.call(null, seq__6651_6695__$1);
-          var G__6697 = cljs.core.chunk_rest.call(null, seq__6651_6695__$1);
-          var G__6698 = c__3670__auto___6696;
-          var G__6699 = cljs.core.count.call(null, c__3670__auto___6696);
-          var G__6700 = 0;
-          seq__6651_6663 = G__6697;
-          chunk__6652_6664 = G__6698;
-          count__6653_6665 = G__6699;
-          i__6654_6666 = G__6700;
+      var temp__4092__auto___7587 = cljs.core.seq.call(null, seq__7539_7552);
+      if(temp__4092__auto___7587) {
+        var seq__7539_7588__$1 = temp__4092__auto___7587;
+        if(cljs.core.chunked_seq_QMARK_.call(null, seq__7539_7588__$1)) {
+          var c__3670__auto___7589 = cljs.core.chunk_first.call(null, seq__7539_7588__$1);
+          var G__7590 = cljs.core.chunk_rest.call(null, seq__7539_7588__$1);
+          var G__7591 = c__3670__auto___7589;
+          var G__7592 = cljs.core.count.call(null, c__3670__auto___7589);
+          var G__7593 = 0;
+          seq__7539_7552 = G__7590;
+          chunk__7540_7553 = G__7591;
+          count__7541_7554 = G__7592;
+          i__7542_7555 = G__7593;
           continue
         }else {
-          var component__5875__auto___6701 = cljs.core.first.call(null, seq__6651_6695__$1);
-          specljs.components.install.call(null, component__5875__auto___6701, description__5874__auto___6661);
-          var G__6702 = cljs.core.next.call(null, seq__6651_6695__$1);
-          var G__6703 = null;
-          var G__6704 = 0;
-          var G__6705 = 0;
-          seq__6651_6663 = G__6702;
-          chunk__6652_6664 = G__6703;
-          count__6653_6665 = G__6704;
-          i__6654_6666 = G__6705;
+          var component__5875__auto___7594 = cljs.core.first.call(null, seq__7539_7588__$1);
+          specljs.components.install.call(null, component__5875__auto___7594, description__5874__auto___7550);
+          var G__7595 = cljs.core.next.call(null, seq__7539_7588__$1);
+          var G__7596 = null;
+          var G__7597 = 0;
+          var G__7598 = 0;
+          seq__7539_7552 = G__7595;
+          chunk__7540_7553 = G__7596;
+          count__7541_7554 = G__7597;
+          i__7542_7555 = G__7598;
           continue
         }
       }else {
@@ -40231,10 +40275,10 @@ try {
     break
   }
 }finally {
-  specljs.config._STAR_parent_description_STAR_ = _STAR_parent_description_STAR_6650_6662
+  specljs.config._STAR_parent_description_STAR_ = _STAR_parent_description_STAR_7538_7551
 }
 if(cljs.core.not.call(null, specljs.config._STAR_parent_description_STAR_)) {
-  specljs.running.submit_description.call(null, specljs.config.active_runner.call(null), description__5874__auto___6661)
+  specljs.running.submit_description.call(null, specljs.config.active_runner.call(null), description__5874__auto___7550)
 }else {
 }
 ;
